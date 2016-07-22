@@ -40,7 +40,8 @@ public class JobTest {
 		
 		JobParameters jobParameters = new JobParametersBuilder()
 				.addDate("date",new Date())
-				.addString("param","존나더워")
+				.addString("startDt","2016-05-01")
+				.addString("endDt","2016-05-30")
 				.toJobParameters();
 		
 		jobLauncher.run(job, jobParameters);
