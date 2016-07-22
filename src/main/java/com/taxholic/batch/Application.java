@@ -42,17 +42,27 @@ public class Application {
             	 map.put(params[0], new JobParameter((params.length > 1)?params[1]:""));
              }
         	 
-             jobLauncher.run(ctx.getBean(args[0], Job.class), new JobParameters(map));   
+             try {
+            	 jobLauncher.run(ctx.getBean(args[0], Job.class), new JobParameters(map));   
+             }catch(Exception e){
+            	 help();
+             }
         	 
          } else{
-        	 System.out.println("-----------------------------------------------");
-        	 System.out.println("\t잡명을 입력하세요 !!");
-        	 System.out.println("\tUage : 잡명 [파라미터 ...]");
-        	 System.out.println("\tex) job start=2015 end=2016");
-        	 System.out.println("-----------------------------------------------");
+        	help();
          }
-         
+    
     	System.exit(0);
 
     }
+    
+    
+    public static void help(){
+	   	 System.out.println("-----------------------------------------------");
+	   	 System.out.println("\t잡명을 입력하세요 !!");
+	   	 System.out.println("\tUage : 잡명 [파라미터 ...]");
+	   	 System.out.println("\tex) job start=2015 end=2016");
+	   	 System.out.println("-----------------------------------------------");
+    }
+    
 }
