@@ -18,7 +18,6 @@
     	<deploy.target.dir>D:/spring_batch</deploy.target.dir>
     	<jar.name>spring-batch</jar.name>
     	
-    	
 	</properties> 
 	
 	<parent>
@@ -26,7 +25,27 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.3.6.RELEASE</version>
     </parent>
-	
+    
+    <profiles>
+    <profile>
+       <id>local</id>
+       <properties>
+           <maven.test.skip>true</maven.test.skip>
+           <deploy.phase>local</deploy.phase>
+       </properties>
+       <activation>
+           <activeByDefault>true</activeByDefault>
+       </activation>
+	 </profile>
+     
+     <profile>
+       <id>dev</id>
+	       <properties>
+	           <maven.test.skip>true</maven.test.skip>
+	           <deploy.phase>dev</deploy.phase>
+	       </properties>
+	 </profile>
+	</profiles>
 	
 	<repositories>
 		<repository>
@@ -97,6 +116,19 @@
 	  </dependencies>
   
   <build>
+  
+  <resources>
+       <resource>
+           <directory>src/main/resources</directory>
+           <filtering>true</filtering>
+       </resource>
+       <resource>
+           <directory>src/main/resources-${deploy.phase}/</directory>
+           <filtering>true</filtering>
+       </resource>
+   </resources>
+  
+  
 	<plugins>
 	     <plugin>
 	          <groupId>org.springframework.boot</groupId>
