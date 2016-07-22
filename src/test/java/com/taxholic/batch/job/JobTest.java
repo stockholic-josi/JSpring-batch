@@ -37,7 +37,6 @@ public class JobTest {
 		
 		logger.debug("-------------------------------------------------------------------------------> start");
 		
-		
 		JobParameters jobParameters = new JobParametersBuilder()
 				.addDate("date",new Date())
 				.addString("startDt","2016-05-01")
